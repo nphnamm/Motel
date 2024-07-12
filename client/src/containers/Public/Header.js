@@ -34,7 +34,7 @@ export default function () {
         <Button
           text={"Đăng Tin Mới"}
           textColor="text-white"
-          bgColor="bg-secondary2"
+          bgColor="bg-secondary_2"
           Icons={AiOutlinePlusCircle}
         />
       </div>

@@ -5,8 +5,10 @@ function App() {
   return (
     <div className="h-screen w-screen ">
         <Routes>
-            <Route path={path.HOME} element={<Home/>}/>
-            <Route path={path.LOGIN}  element={<Login/>}/>
+            <Route path={path.HOME} element={<Home/>}>
+            
+                <Route path={path.LOGIN}  element={<Login/>}/>
+            </Route>
 
 
            

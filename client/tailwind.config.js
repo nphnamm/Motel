@@ -8,14 +8,21 @@ module.exports = {
       },
       backgroundColor:{
         primary:"#003b95",
-        secondary1:'#1266dd',
-        secondary2:'#f73859'
+        secondary_1:'#1266dd',
+        secondary_2:'#f73859'
       },
       textColor:{
         primary:"#003b95",
-        secondary1:'#1266dd',
-        secondary2:'#f73859'
+        secondary_1:'#1266dd',
+        secondary_2:'#f73859'
+      },
+      maxWidth:{
+        '600':'600px'
+      },
+      cursor:{
+        'pointer':'pointer'
       }
+
 
     },
   },
