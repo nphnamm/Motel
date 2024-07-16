@@ -63,6 +63,20 @@ const scraper = (browser,url) => new Promise(async(resolve,reject)=>{
                 await pageDetail.goto(link)
                 console.log('Access to...' + link);
                 await pageDetail.waitForSelector('#main');
+
+                const detailData = {}
+
+                // start scrape
+                // crape images 
+                const images = await pageDetail.$$eval('#left-col > article > div.post-images > div > div.swiper-wrapper > div.swiper-slide',(els)=>{
+                    images = els.map(el =>{
+                        return el.querySelector('img')?.src
+                    })
+                    return images;
+
+                })
+                detailData.images =images;
+                
                 await pageDetail.close();
                 console.log(link + ' closed.')
                 resolve();
