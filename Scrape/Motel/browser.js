@@ -7,7 +7,7 @@ const startBrowser = async()=>{
         browser = await puppeteer.launch({
             // Có hiện UI của Chromnium hay không, false là có
 
-            headless:true,
+            headless:false,
             // Chrome sử dụng multiple plaeyer của sandbox để trnash những nội dung web không đáng tin cậy.
             args:['--disabled-setuid-sandbox'],
             // Truy cập website bỏ qua lỗi liên quan http secure.

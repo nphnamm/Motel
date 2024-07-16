@@ -38,25 +38,42 @@ const scraper = (browser,url) => new Promise(async(resolve,reject)=>{
 
         const scrapeData = {};
 
-        // get header
+        //TODO: get header
         const headerData = await newPage.$eval('header',(el)=>{
             return {
                 title: el.querySelector('h1').innerText,
                 description: el.querySelector('p').innerText
             }
         })
-        // console.log('header data: ', headerData);
+        //console.log('header data: ', headerData);
         scrapeData.header = headerData;
 
-        // get links detail item'
+        //TODO: get links detail item'
         detailLinks = await newPage.$$eval('#left-col > section.section-post-listing > ul > li',(els)=>{
             detailLinks = els.map(el =>{
                 return el.querySelector('.post-meta > h3 > a').href
             })
             return detailLinks;
         })
-        console.log('check detail links', detailLinks);
-
+        // console.log('check detail links', detailLinks);
+     
+        const scraperDetail = async (link)=> new Promise(async(resolve,reject) => {
+            try {
+                let pageDetail = await browser.newPage();
+                await pageDetail.goto(link)
+                console.log('Access to...' + link);
+                await pageDetail.waitForSelector('#main');
+                await pageDetail.close();
+                console.log(link + ' closed.')
+                resolve();
+            } catch (error) {
+                console.log('Error When get detail data!');
+                reject(error);
+            }
+        })
+        for(let link of detailLinks){
+            await scraperDetail(link);
+        }
 
 
         await browser.close();
