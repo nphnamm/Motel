@@ -8,7 +8,7 @@ const scrapeController = async(browserInstance) =>{
         // Call scrape function in file scrape
         const categories = await scrapers.scrapeCategory(browser,url);
         const selectedCategory = categories.filter((categories,index) => indexs.some(i=>i === index));
-        console.log('selected: ',selectedCategory);
+        // console.log('selected: ',selectedCategory);
         
         await scrapers.scraper(browser,selectedCategory[0].link)
 

@@ -45,7 +45,19 @@ const scraper = (browser,url) => new Promise(async(resolve,reject)=>{
                 description: el.querySelector('p').innerText
             }
         })
-        console.log('header data: ', headerData);
+        // console.log('header data: ', headerData);
+        scrapeData.header = headerData;
+
+        // get links detail item'
+        detailLinks = await newPage.$$eval('#left-col > section.section-post-listing > ul > li',(els)=>{
+            detailLinks = els.map(el =>{
+                return el.querySelector('.post-meta > h3 > a').href
+            })
+            return detailLinks;
+        })
+        console.log('check detail links', detailLinks);
+
+
 
         await browser.close();
         console.log(">> Tab closed")
