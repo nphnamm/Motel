@@ -76,7 +76,32 @@ const scraper = (browser,url) => new Promise(async(resolve,reject)=>{
 
                 })
                 detailData.images =images;
-                
+
+                //todo: get header detail
+
+                const header = await pageDetail.$eval('the-post',(el)=>{
+                    return {
+                        title: el.querySelector('header.page-header > h1 > a')?.innerText,
+                        star: el.querySelector('header.page-header > h1 > span')?.className,
+                        class: {
+                            content: el.querySelector('post-overview > section-content > table > tbody > tr')?.innerText,
+                            classType: el.querySelector('post-overview > section-content > table > tbody > tr > td > a > strong')?.innerText
+                        },
+                        address: el.querySelector('address')?.innerText,
+                        attributes:{
+                            price: el.querySelector('header.page-header > div.post-attributes > .price > span')?.innerText,
+                            acreage: el.querySelector('header.page-header > div.post-attributes > .acreage > span')?.innerText,
+                            published: el.querySelector('header.page-header > div.post-attributes > .published > span')?.innerText,
+                            hashtag: el.querySelector('header.page-header > div.post-attributes > .hashtag > span')?.innerText,
+
+
+                        }
+
+                    }
+
+                })
+                console.log('check header', header);
+
                 await pageDetail.close();
                 console.log(link + ' closed.')
                 resolve();
