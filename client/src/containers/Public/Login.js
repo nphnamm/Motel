@@ -11,7 +11,7 @@ export default function Login() {
 
         <Button
         text="Đăng Nhập"
-        bgColor="bg-secondary1"
+        bgColor="bg-secondary_1"
         textColor="text-white"
         fullWidth={true}
 
